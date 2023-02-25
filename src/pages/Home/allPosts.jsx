@@ -18,7 +18,24 @@ const AllFrindPost = () => {
             .then(data => {
                 posts = posts.concat(data);
             })
+            getAllAuthorDetails(posts);
             setPost(posts);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const getAllAuthorDetails = async (post) => {
+        try {
+            const url = import.meta.env.VITE_APP_WEBSITE;
+            await post.map((curr, index) => {
+                fetch(url + curr.author)
+                    .then(data => data.json())
+                    .then(data => {
+                        // console.log(data);
+                        post[index].user = data.user;
+                    })
+            });
         } catch (err) {
             console.log(err);
         }
@@ -31,7 +48,7 @@ const AllFrindPost = () => {
             {
                 post !== null ?
                 post.map((curr, index) => {
-                    console.log(curr);
+                    console.log(curr)
                 }) : <div>Such an Empty Place.</div>
             }
         </div>
