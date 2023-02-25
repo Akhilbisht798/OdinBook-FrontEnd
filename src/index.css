@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply min-h-screen
+    }
+    html {
+        @apply min-h-screen
+    }
+    * {
+        @apply p-0
+    }
+    * {
+        @apply m-0
+    }
+}
