@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "../../context/post.context";
 import { UserContext } from "../../context/user.context";
 import AllFrindPost from "./allPosts";
@@ -10,7 +10,7 @@ const Home = () => {
      */
 
     const user = useContext(UserContext); // curr User.
-    const [post, setPost] = useState(() => null);
+    const [post, setPost] = useState(null);
 
     return (
         <PostContext.Provider value={{post, setPost}}>

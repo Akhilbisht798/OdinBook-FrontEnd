@@ -9,6 +9,7 @@ import Login from './pages/AuthPage/login.page'
 import Root from './pages/root/root.page';
 import PrivateRoute, { PrivateRouteLoader }from './pages/AuthPage/PrivateRoute.page'
 import Home from './pages/Home';
+import About from './pages/About'
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ const Router = createBrowserRouter(
 
       <Route element={<PrivateRoute />} loader={PrivateRouteLoader}>
         <Route path='home' element={<Home />}/>
+        <Route path='about' element={<About />} />
       </Route>
 
       {/* <Route path="*" element={<NotFound />} /> */}

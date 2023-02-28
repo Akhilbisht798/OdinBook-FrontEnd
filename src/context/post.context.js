@@ -2,5 +2,5 @@ import { createContext } from "react";
 
 export const PostContext = createContext({
     post: null,
-    setUser: (post) => {}
+    setPost: (post) => {}
 });
