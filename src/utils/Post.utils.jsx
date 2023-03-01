@@ -1,7 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/user.context";
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
+import { BiCommentDetail } from "react-icons/bi";
+import Comments from "./Comment.utils";
 
 /**
  * Takes 2 props
@@ -10,6 +12,7 @@ import { AiOutlineHeart } from "react-icons/ai";
  */
 const Posts = (props) => {
     const user = useContext(UserContext);
+    const [openComments, setOpenComments] = useState(() => false);
     const url = import.meta.env.VITE_APP_WEBSITE;
 
     const LikePost = (id) => {
@@ -36,9 +39,12 @@ const Posts = (props) => {
         .catch(err => err);
     }
 
+    const toggleComments = () => {
+        setOpenComments(!openComments);
+    }
+
     return (
         <div className=" flex items-center justify-center gap-4 p-3 flex-col">
-            {console.log(props.data)}
             {props.data !== null ? 
                 props.data.map((curr) => {
                     return (
@@ -57,11 +63,19 @@ const Posts = (props) => {
                                 <p className=" text-left">{curr.content}</p>
                                 <img src={curr?.img} />
                             </div>
-                            <div>
-                                {curr.likes.includes(user.user._id) ? 
-                                    <AiFillHeart onClick={() => {UnLikePost(curr._id)}}/> :
-                                    <AiOutlineHeart onClick={() => {LikePost(curr._id)}}/>
-                                }
+                            <div className=" flex items-center justify-start gap-4">
+                                <div className=" flex items-center justify-center">
+                                    {curr.likes.includes(user.user._id) ? 
+                                        <AiFillHeart cursor="pointer" onClick={() => {UnLikePost(curr._id)}}/> :
+                                        <AiOutlineHeart cursor="pointer" onClick={() => {LikePost(curr._id)}}/>
+                                    }
+                                    <p>{curr.likes.length}</p>
+                                </div>
+                                <div>
+                                    <BiCommentDetail cursor="pointer" onClick={() => {toggleComments()}}/> 
+                                    {openComments ? <Comments id={curr._id} close={toggleComments}/> 
+                                    : null}
+                                </div>
                             </div>
                         </div>
                     )
