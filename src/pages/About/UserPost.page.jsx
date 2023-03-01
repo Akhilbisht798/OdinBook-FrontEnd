@@ -4,13 +4,22 @@ import Posts from "../../utils/Post.utils";
 import { UserPostContext } from "../../context/UserPost.context";
 
 const UserPosts = () => {
+    const url = import.meta.env.VITE_APP_WEBSITE; 
     const user = useContext(UserContext);
     const [userPost, setUserPost] = useState(null);
-    // const {userPosts, setUserPost} = useContext(UserPostContext);
+    const [dataUpdated, setDataUpdate] = useState(false);
+
+    const getNewData = () => {
+        fetch(url + "Post/" + user.user._id, {
+            credentials: 'include',
+        })
+        .then(data => data.json())
+        .then(data => setUserPost(data))
+        .catch(err => console.log(err));
+    }
 
     useEffect(() => {
         let isCancelled = false;
-        const url = import.meta.env.VITE_APP_WEBSITE; 
         fetch(url + "Post/" + user.user._id, {
             credentials: 'include',
         })
@@ -30,7 +39,7 @@ const UserPosts = () => {
     return (
         <div>
             {console.log(userPost)}
-            <Posts data={userPost}/>
+            <Posts data={userPost} getNewData={getNewData}/>
         </div>
     )
 }
