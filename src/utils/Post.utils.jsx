@@ -13,6 +13,7 @@ import Comments from "./Comment.utils";
 const Posts = (props) => {
     const user = useContext(UserContext);
     const [openComments, setOpenComments] = useState(() => false);
+    const [commentIndex, setCommentIndex] = useState(0);
     const url = import.meta.env.VITE_APP_WEBSITE;
 
     const LikePost = (id) => {
@@ -39,8 +40,9 @@ const Posts = (props) => {
         .catch(err => err);
     }
 
-    const toggleComments = () => {
+    const toggleComments = (id) => {
         setOpenComments(!openComments);
+        setCommentIndex(id);
     }
 
     return (
@@ -72,10 +74,14 @@ const Posts = (props) => {
                                     <p>{curr.likes.length}</p>
                                 </div>
                                 <div>
-                                    <BiCommentDetail cursor="pointer" onClick={() => {toggleComments()}}/> 
-                                    {openComments ? <Comments id={curr._id} close={toggleComments}/> 
-                                    : null}
+                                    <BiCommentDetail cursor="pointer" onClick={() => {toggleComments(curr._id)}}/>
+                                    {/* {console.log(openComments)} */}
+                                    
                                 </div>
+                            </div>
+                            <div>
+                                {openComments && commentIndex === curr._id ? <Comments id={curr._id} close={toggleComments}/> 
+                                    : null}
                             </div>
                         </div>
                     )
