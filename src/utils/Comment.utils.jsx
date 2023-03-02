@@ -33,7 +33,7 @@ const Comments = (props) => {
                                 "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/440cba59e9a87fbcaab5b0f10b0a3702895e00d749afb9af13bf3000a837a478._RI_V_TTW_.jpg"} 
                                 className=" w-16 rounded-full"
                                 /> 
-                                <p>{curr.author.email}</p>
+                                <p className=" font-semibold font-sans">{curr.author.email}</p>
                             </div>
 
                             <div>

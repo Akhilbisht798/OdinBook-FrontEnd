@@ -38,7 +38,6 @@ const UserPosts = () => {
 
     return (
         <div>
-            {console.log(userPost)}
             <Posts data={userPost} getNewData={getNewData}/>
         </div>
     )

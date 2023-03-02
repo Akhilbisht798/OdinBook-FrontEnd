@@ -4,6 +4,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiCommentDetail } from "react-icons/bi";
 import Comments from "./Comment.utils";
+import { MdSend } from "react-icons/md"
 
 /**
  * Takes 2 props
@@ -40,6 +41,27 @@ const Posts = (props) => {
         .catch(err => err);
     }
 
+    const AddPost = (e) => {
+        e.preventDefault();
+        const data = {
+            content: e.target.content.value,
+        }
+        console.log(e.target.content.value);
+        fetch(url + "Post/", {
+            method: "POST",
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(data => data.json())
+        .then(data => {
+            if (data?.author) props.getNewData();
+        })
+        .catch(err => console.log(err));
+    }
+
     const toggleComments = (id) => {
         setOpenComments(!openComments);
         setCommentIndex(id);
@@ -47,6 +69,17 @@ const Posts = (props) => {
 
     return (
         <div className=" flex items-center justify-center gap-4 p-3 flex-col">
+            <div className=" flex w-3/5 items-center justify-evenly">
+                <img src="https://i.pinimg.com/280x280_RS/e5/ba/ec/e5baec240551420bb631f2787e083290.jpg" 
+                                    className=" w-16 rounded-full"/>
+                <form onSubmit={AddPost}>
+                    <textarea type="text" placeholder="Enter Something in your mind" rows="4" cols="50"
+                        className=" rounded-md shadow-md" name="content"
+                    />
+                    <button type="submit"><MdSend /></button>
+                </form>
+
+            </div>
             {props.data !== null ? 
                 props.data.map((curr) => {
                     return (
