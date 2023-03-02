@@ -113,7 +113,7 @@ const Posts = (props) => {
                                 </div>
                             </div>
                             <div>
-                                {openComments && commentIndex === curr._id ? <Comments id={curr._id} close={toggleComments}/> 
+                                {openComments && commentIndex === curr._id ? <Comments id={curr._id}/> 
                                     : null}
                             </div>
                         </div>
