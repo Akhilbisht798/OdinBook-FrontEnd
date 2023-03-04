@@ -3,28 +3,18 @@ import { UserContext } from "../../context/user.context";
 import { UserFriend } from "../../context/UserFriend.context";
 import { UserPostContext } from "../../context/UserPost.context";
 import UserPosts from "./UserPost.page";
+import AboutUserFriend from "./UserFriend";
 
 const About = () => {
-    /**
-     * Data I need.
-     * - User Post.
-     * - User Friends.
-     * - User Data.
-     * - Ability to write a post.
-     */
-
-    // const user = useContext(UserContext);
-    // const [userPosts, setUserPost] = useState(null);
-    // const [userFriend, setUserFriend] = useState(null);
-
     return (
-        // <UserPostContext.Provider value={{userPosts, setUserPost}}>
-        //     <UserFriend.Provider value={{userFriend, setUserFriend}}>
-                <div>
-                    <UserPosts />
-                </div>
-        //     </UserFriend.Provider>
-        // </UserPostContext.Provider>
+        <div className=" grid grid-cols-7 gap-5 p-16">
+            <div className=" col-start-1 col-end-3">
+                <AboutUserFriend />
+            </div>
+            <div className=" col-start-3 col-end-7">
+                <UserPosts />
+            </div>
+        </div>
     )
 }
 
