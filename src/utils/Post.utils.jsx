@@ -69,7 +69,7 @@ const Posts = (props) => {
 
     return (
         <div className=" flex items-center justify-center gap-4 p-3 flex-col">
-            <div className=" flex w-3/5 items-center justify-evenly">
+            <div className=" flex w-3/5 items-center justify-evenly gap-7">
                 <img src="https://i.pinimg.com/280x280_RS/e5/ba/ec/e5baec240551420bb631f2787e083290.jpg" 
                                     className=" w-16 rounded-full"/>
                 <form onSubmit={AddPost}>
