@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Navigate, Outlet, useLoaderData } from 'react-router-dom'
 import { UserContext } from "../../context/user.context";
+import Navbar from '../navbar'
 
 const PrivateRoute = () => {
 
@@ -10,7 +11,7 @@ const PrivateRoute = () => {
     return (
         <>
         <UserContext.Provider value={{user, setUser}}>
-            {auth !== null ? <Outlet /> 
+            {auth !== null ? <><Navbar /><Outlet /> </>
                 : <Navigate to="/login" />}
         </UserContext.Provider>
         </>

@@ -15,14 +15,11 @@ const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root/>}>
       <Route path="login" element={<Login />} /> 
-      {/* <Route path="Register" element={<SignUpForm />} /> */}
 
       <Route element={<PrivateRoute />} loader={PrivateRouteLoader}>
         <Route path='home' element={<Home />}/>
         <Route path='about' element={<About />} />
       </Route>
-
-      {/* <Route path="*" element={<NotFound />} /> */}
     </Route>
   )
 )
